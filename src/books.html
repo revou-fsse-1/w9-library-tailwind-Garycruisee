@@ -1,69 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library Tailwind</title>
 
-    <link href="/dist/output.css" rel="stylesheet">
-</head>
-<body>
+    <link href="output.css" rel="stylesheet" />
+  </head>
+
+  <body onload="loadBooks()">
     <div class="flex flex-col h-screen">
-        <header>
-            <nav>
-                <div>
-                    <div>
-                        <div>
-                            <button id="m-menu-button" type="button" aria-controls="mobile-menu" aria-expanded="false">
-                                <span class="sr-only">Open main menu</span>
-                                <!-- closed menu -->
-                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
-                                <!-- opened menu -->
-                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://assets.website-files.com/61af164800e38c4f53c60b4e/61af164800e38c11efc60b6d_RevoU.svg" alt="RevoU Library">
-                            </div>
-                            <div class="hidden sm:ml-6 sm:block">
-                                <div class="flex space-x-4">
-                                    <a href="index.html" aria-current="page">Library</a>
-              
-                                    <a href="books.html">Books</a>
-              
-                                    <a href="information.html">Information</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <header>
+        <nav class="bg-gray-800">
+          <div class="mx-auto px-2 max-w-7x1 sm:px-6 lg:px-8">
+            <div class="relative h-16 flex items-center justify-between">
+              <div
+                class="absolute flex left-0 sm:hidden items-center inset-y-0 bg-gray-800"
+              >
+                <button
+                  class="text-gray-400 p-2 hover:bg-gray-600 rounded-md"
+                  id="m-menu-button"
+                  type="button"
+                  aria-controls="mobile-menu"
+                  aria-expanded="false"
+                  onclick="mobileMenuBtn()"
+                >
+                  <span class="sr-only">Open main menu</span>
+                  <!-- closed menu -->
+                  <svg
+                    class="block h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                  </svg>
+                  <!-- opened menu -->
+                  <svg
+                    class="hidden w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div
+                class="flex justify-center sm:justify-start sm:items-stretch flex-1"
+              >
+                <div class="flex items-center flex-shrink-0">
+                  <img
+                    class="h-8 w-auto block"
+                    src="https://assets.website-files.com/61af164800e38c4f53c60b4e/61af164800e38c11efc60b6d_RevoU.svg"
+                    alt="RevoU Library"
+                  />
                 </div>
-              
-                <div id="m-menu">
-                    <div>
-                        <a href="index.html" aria-current="page">Library</a>
-              
-                        <a href="books.html">Books</a>
-              
-                        <a href="information.html">Information</a>
-                    </div>
+                <div class="hidden sm:ml-6 sm:block">
+                  <div class="flex space-x-4">
+                    <a
+                      href="index.html"
+                      aria-current="page"
+                      class="bg-gray-900 p-2 text-white font-medium rounded-md text-sm px-3"
+                      >Library</a
+                    >
+
+                    <a
+                      href="books.html"
+                      class="p-2 text-gray-300 font-medium rounded-md text-sm hover:bg-gray-700 hover:text-white"
+                      >Books</a
+                    >
+
+                    <a
+                      href="information.html"
+                      class="p-2 text-gray-300 font-medium rounded-md text-sm hover:bg-gray-700 hover:text-white"
+                      >Information</a
+                    >
+                  </div>
                 </div>
-            </nav>
-        </header>
-        <main class="flex-1 bg-library-2">
-            Books
-        </main>
-        <footer>
-            <p>
-                RevoU Library
-            </p>
-        </footer>
+              </div>
+            </div>
+          </div>
+
+          <div id="m-menu" class="hidden sm:hidden">
+            <div class="bg-gray-800 px-2 pt-2 space-y-1 pb-2">
+              <a
+                href="index.html"
+                aria-current="page"
+                class="block text-white font-medium bg-gray-900 rounded-md p-2"
+                >Library</a
+              >
+
+              <a
+                href="books.html"
+                class="block text-white hover:bg-gray-600 font-medium p-2 hover:text-white"
+                >Books</a
+              >
+
+              <a
+                href="information.html"
+                class="block text-white font-medium p-2 hover:bg-gray-600 hover:text-white"
+                >Information</a
+              >
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main
+        class="flex-1 overflow-y-auto bg-library-2 bg-cover bg-center bg-no-repeat"
+      >
+        <div class="flex flex-col items-center py-3 px-4 sm:px-8">
+          <div
+            class="container mx-auto my-3 max-w-screen-xl sm:px-6 lg:px-8 bg-gray-800 rounded-lg py-8"
+          >
+            <div class="text-center">
+              <nav aria-label="Page navigation example">
+                <ul class="inline-flex -space-x-px">
+                  <li>
+                    <a
+                      href="#"
+                      class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      onclick="previousBooksPage()"
+                      >Previous</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="?page=1"
+                      class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="?page=2"
+                      class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      onclick="nextBooksPage()"
+                      >Next</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div
+              id="book-grid"
+              class="my-6 grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-3 gap-4 px-4 sm:px-0"
+            >
+              <div
+                class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              >
+                <a href="#">
+                  <img
+                    class="h-72 mx-auto"
+                    src="https://covers.openlibrary.org/b/id/10587033-L.jpg"
+                    alt="The Lord of the Rings: The Fellowship of the Ring"
+                  />
+                </a>
+                <div class="p-5">
+                  <a href="#">
+                    <h5
+                      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    >
+                      The Lord of the Rings: The Fellowship of the Ring
+                    </h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <b>Author(s):</b> J.R.R. Tolkien
+                  </p>
+                </div>
+              </div>
+              <div
+                class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              >
+                <a href="#">
+                  <img
+                    class="h-72 mx-auto"
+                    src="https://covers.openlibrary.org/b/id/13179392-L.jpg"
+                    alt="The Lord of the Rings: The Return of the Kings"
+                  />
+                </a>
+                <div class="p-5">
+                  <a href="#">
+                    <h5
+                      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    >
+                      The Lord of the Rings: The Return of the Kings
+                    </h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <b>Author(s):</b> J.R.R. Tolkien
+                  </p>
+                </div>
+              </div>
+              <div
+                class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+              >
+                <a href="#">
+                  <img
+                    class="h-72 mx-auto"
+                    src="https://covers.openlibrary.org/b/id/10290014-L.jpg"
+                    alt="Lord of the Rings: The Two Towers v. 2"
+                  />
+                </a>
+                <div class="p-5">
+                  <a href="#">
+                    <h5
+                      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    >
+                      Lord of the Rings: The Two Towers v. 2
+                    </h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <b>Author(s):</b> J.R.R. Tolkien
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <nav aria-label="Page navigation example">
+                <ul class="inline-flex -space-x-px">
+                  <li>
+                    <a
+                      href="#"
+                      class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      onclick="previousBooksPage()"
+                      >Previous</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="?page=1"
+                      class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="?page=2"
+                      class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      onclick="nextBooksPage()"
+                      >Next</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="bg-gray-800 text-center p-3.5">
+        <p class="text-gray-300 text-xs">RevoU Library</p>
+      </footer>
     </div>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
